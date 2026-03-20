@@ -1,51 +1,78 @@
-# DevLabs 🖥️
+# DevLabs 🖥️ Hardware Diagnostics Lab
 
-[![React](https://img.shields.io/badge/React-19-green)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-8-blue)](https://vite.dev)
-[![Tailwind](https://img.shields.io/badge/Tailwind-4-purple)](https://tailwindcss.com)
+[![React](https://img.shields.io/badge/React-19.2.4-brightgreen)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8.0.1-blue)](https://vite.dev)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.2.2-violet)](https://tailwindcss.com)
 
-Browser-based hardware diagnostics suite. Test your device's keyboard, mouse, screen, camera/mic, speakers, network, touch input, and sensors with real-time metrics.
 
-## ✨ Features
-- 8 interactive diagnostic tests
-- Dark mode with glassmorphism UI
-- Framer Motion animations
-- Responsive design (desktop/mobile)
-- Real-time performance monitoring
+**DevLabs** is a modern, browser-native hardware testing suite built with React 19 and Tailwind CSS 4. Perform comprehensive diagnostics on input devices, displays, media hardware, audio output, network, touchscreens, and motion sensors using Web APIs and real-time visualizations.
 
-## 🚀 Quick Start
+## 📱 Live Demo
+[![Dashboard Screenshot](public/DevLabs-ss.png)](https://devlabs-sudip294.vercel.app) *Live: https://devlabs-sudip294.vercel.app (deploy your own!)*
+
+## 🌟 Key Features
+- **8 Specialized Tests**: From keyboard latency to sensor fusion
+- **Production-Grade UI**: Dark mode, glassmorphism, Framer Motion animations (staggered cards)
+- **Responsive & Performant**: Mobile-first, Vite HMR, Tailwind JIT
+- **Real-Time Metrics**: Event tracking, FPS counters, bandwidth graphs
+- **Zero Setup**: Pure browser APIs, no plugins/extensions
+
+## 🎯 Test Suite Overview
+| Test | Web APIs Used | Metrics Captured |
+|------|---------------|------------------|
+| **Keyboard** | `KeyboardEvent` | Latency, repeat rate, ghosting |
+| **Mouse** | `PointerEvent`, CPS | Double-click speed, scroll delta |
+| **Screen** | `Screen API`, Canvas | Dead pixels, FPS, fullscreen |
+| **Media** | `MediaDevices` WebRTC | Camera resolution, mic levels |
+| **Speaker** | `AudioContext` | Stereo panning, frequency response |
+| **Network** | `PerformanceObserver`, WebRTC | Download/upload, RTT latency |
+| **Touch** | `TouchEvent` | Multi-touch zones, pressure mapping |
+| **Sensors** | `DeviceOrientationEvent` | Gyroscope, accelerometer, magnetometer |
+
+## 🚀 Getting Started
+### Prerequisites
+- Node.js 20+
+- npm/yarn/pnpm
+
+### Installation
 ```bash
+git clone https://github.com/Sudip294/DevLabs.git
+cd DevLabs
 npm install
-npm run dev
 ```
 
-Open http://localhost:5173
+### Development
+```bash
+npm run dev      # http://localhost:5173
+npm run lint     # ESLint check
+npm run build    # dist/ production build
+npm run preview  # Preview built app
+```
 
-## 📊 Tests
-| Test | Description |
-|------|-------------|
-| Keyboard | Key latency & repeat |
-| Mouse | Click speed & scroll |
-| Screen | Dead pixels & FPS |
-| Media | Camera/mic WebRTC |
-| Speaker | Stereo balance |
-| Network | Speed & latency |
-| Touch | Dead zones |
-| Sensors | Gyro/accelerometer |
-
-## 🛠️ Tech Stack
-- React 19 + React Router
-- Vite 8 (dev/build)
-- Tailwind CSS 4
-- Framer Motion (animations)
-
-## 📖 Scripts
-- `npm run dev` - Start dev server
-- `npm run build` - Production build
-- `npm run lint` - ESLint check
-- `npm run preview` - Preview build
+## 🏗️ Architecture
+```
+src/
+├── App.jsx           # React Router v7 (nested routes)
+├── components/       # Layout, Sidebar, Navbar (persistent UI)
+├── pages/           # 8 test pages + Dashboard grid
+├── assets/          # Icons, hero images
+└── styles/          # Tailwind + custom glass effects
+```
+- **Routing**: `/keyboard`, `/mouse`, etc. (Layout wrapper)
+- **Styling**: Tailwind 4 (dark: class), custom `glass-card` hovers
+- **Animations**: Framer Motion (0.07s stagger)
 
 ## 🤝 Contributing
-Pull requests welcome! See issues for roadmap.
+1. Fork & clone
+2. Create feature branch (`git checkout -b feature/test-enhance`)
+3. Commit (`git commit -m 'feat: add mouse CPS counter'`)
+4. Push & PR to `main`
 
-**Made with ❤️ by [Sudip294](https://github.com/Sudip294)**
+Issues/PRs welcome!
+
+## 🙋 Author
+**Sudip294** - [GitHub](https://github.com/Sudip294) | [sudiphero294@gmail.com](mailto:sudiphero294@gmail.com)
+
+---
+
+*Built with passion for hardware diagnostics 🔧*
