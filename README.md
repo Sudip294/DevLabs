@@ -1,16 +1,51 @@
-# React + Vite
+# DevLabs 🖥️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-19-green)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8-blue)](https://vite.dev)
+[![Tailwind](https://img.shields.io/badge/Tailwind-4-purple)](https://tailwindcss.com)
 
-Currently, two official plugins are available:
+Browser-based hardware diagnostics suite. Test your device's keyboard, mouse, screen, camera/mic, speakers, network, touch input, and sensors with real-time metrics.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
+- 8 interactive diagnostic tests
+- Dark mode with glassmorphism UI
+- Framer Motion animations
+- Responsive design (desktop/mobile)
+- Real-time performance monitoring
 
-## React Compiler
+## 🚀 Quick Start
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open http://localhost:5173
 
-## Expanding the ESLint configuration
+## 📊 Tests
+| Test | Description |
+|------|-------------|
+| Keyboard | Key latency & repeat |
+| Mouse | Click speed & scroll |
+| Screen | Dead pixels & FPS |
+| Media | Camera/mic WebRTC |
+| Speaker | Stereo balance |
+| Network | Speed & latency |
+| Touch | Dead zones |
+| Sensors | Gyro/accelerometer |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- React 19 + React Router
+- Vite 8 (dev/build)
+- Tailwind CSS 4
+- Framer Motion (animations)
+
+## 📖 Scripts
+- `npm run dev` - Start dev server
+- `npm run build` - Production build
+- `npm run lint` - ESLint check
+- `npm run preview` - Preview build
+
+## 🤝 Contributing
+Pull requests welcome! See issues for roadmap.
+
+**Made with ❤️ by [Sudip294](https://github.com/Sudip294)**
