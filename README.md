@@ -8,7 +8,7 @@
 **DevLabs** is a modern, browser-native hardware testing suite built with React 19 and Tailwind CSS 4. Perform comprehensive diagnostics on input devices, displays, media hardware, audio output, network, touchscreens, and motion sensors using Web APIs and real-time visualizations.
 
 ## 📱 Live Demo
-[![Dashboard Screenshot](public/DevLabs-ss.png)](https://devlabs-sudip294.vercel.app) *Live: https://devlabs-sudip294.vercel.app (deploy your own!)*
+[![Dashboard Screenshot](public/DevLabs-ss.png)](https://devlabs-project.vercel.app) *Live: https://devlabs-project.vercel.app (deploy your own!)*
 
 ## 🌟 Key Features
 - **8 Specialized Tests**: From keyboard latency to sensor fusion
