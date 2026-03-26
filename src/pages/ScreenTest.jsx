@@ -5,6 +5,7 @@ const colors = ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF'];
 
 export default function ScreenTest() {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showHud, setShowHud] = useState(true);
   const [colorIndex, setColorIndex] = useState(0);
   const [fps, setFps] = useState(0);
   const [maxFps, setMaxFps] = useState(0);
@@ -12,6 +13,7 @@ export default function ScreenTest() {
   const fpsTimeRef = useRef(performance.now());
   const framesRef = useRef(0);
   const containerRef = useRef(null);
+  const hudTimerRef = useRef(null);
 
   useEffect(() => {
     const calcFPS = () => {
@@ -31,10 +33,35 @@ export default function ScreenTest() {
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const fs = !!document.fullscreenElement;
+      setIsFullscreen(fs);
+
+      // When entering fullscreen show HUD and auto-hide after 5s
+      if (fs) {
+        setShowHud(true);
+        if (hudTimerRef.current) clearTimeout(hudTimerRef.current);
+        hudTimerRef.current = setTimeout(() => {
+          setShowHud(false);
+          hudTimerRef.current = null;
+        }, 5000);
+      } else {
+        // Leaving fullscreen: clear timer and ensure HUD visible when returning
+        if (hudTimerRef.current) {
+          clearTimeout(hudTimerRef.current);
+          hudTimerRef.current = null;
+        }
+        setShowHud(true);
+      }
     };
+
     document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      if (hudTimerRef.current) {
+        clearTimeout(hudTimerRef.current);
+        hudTimerRef.current = null;
+      }
+    };
   }, []);
 
   const toggleFullscreen = () => {
@@ -56,12 +83,13 @@ export default function ScreenTest() {
         style={{ backgroundColor: colors[colorIndex] }}
         onClick={cycleColor}
       >
-        <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-md font-mono text-xl backdrop-blur-md border border-white/10 shadow-lg">
+        <div className={`absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-md font-mono text-xl backdrop-blur-md border border-white/10 shadow-lg transition-opacity duration-700 ${showHud ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
            FPS: {fps}
         </div>
-        <div className="absolute bottom-10 inset-x-0 text-center">
-           <span className={`px-4 py-2 rounded-full font-medium shadow-xl ${colors[colorIndex] === '#FFFFFF' ? 'bg-black/20 text-black border border-black/10' : 'bg-white/20 text-white border border-white/10'} backdrop-blur-md transition-colors`}>
-             Click anywhere to change color. Press ESC to exit.
+        <div className={`absolute bottom-6 sm:bottom-10 inset-x-0 px-4 sm:px-0 text-center transition-opacity duration-700 ${showHud ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+           <span className={`inline-block px-3 py-2 rounded-full font-medium shadow-xl max-w-[90%] sm:max-w-md mx-auto text-sm sm:text-base md:text-lg ${colors[colorIndex] === '#FFFFFF' ? 'bg-black/20 text-black border border-black/10' : 'bg-white/20 text-white border border-white/10'} backdrop-blur-md transition-colors break-words`}> 
+             <span className="sm:hidden">Tap to change color.</span>
+             <span className="hidden sm:inline">Click anywhere to change color. Press ESC to exit.</span>
            </span>
         </div>
       </div>
